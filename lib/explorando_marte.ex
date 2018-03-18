@@ -1,14 +1,11 @@
 defmodule ExplorandoMarte do
-  import Planalto
-  import PosicaoSonda
   
   def processa_sonda(planalto, posicao_inicial, instrucoes) do
       processa_instrucoes(posicao_inicial, String.graphemes(instrucoes))
   end
 
   defp processa_instrucoes(posicao = %PosicaoSonda{}, [instrucao | rest]) do
-    nova_posicao = posicao |> processa_instrucao(instrucao)
-    processa_instrucoes(nova_posicao, rest)
+    posicao |> processa_instrucao(instrucao) |> processa_instrucoes(rest)
   end
 
   defp processa_instrucoes(posicao, []) do
