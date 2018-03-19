@@ -26,7 +26,7 @@ defmodule Processor.Std do
         num_sonda = length(sondas)
         [pos_x, pos_y, direction] = IO.gets("Defina a posição da sonda \##{num_sonda} (ex: 1 3 N):\n") |> ReadUtils.read_splitted()
 
-        instrucoes = IO.gets("Defina as instruções da sonda \##{num_sonda} (ex: MMMLRMLM):") |> String.strip
+        instrucoes = IO.gets("Defina as instruções da sonda \##{num_sonda} (ex: MMMLRMLM):\n") |> String.strip
         sonda = %PosicaoSonda{x: pos_x, y: pos_y, orientacao: direction}
 
         novas_sondas = sondas ++ [%BlocoSonda{planalto: planalto, posicao_inicial: sonda, instrucoes: instrucoes}]
