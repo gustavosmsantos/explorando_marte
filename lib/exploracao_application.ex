@@ -1,11 +1,9 @@
 defmodule Exploracao.Application do
-  
-  @processor Application.get_env(:explorando_marte, :processor)
-  
-  def run do
-      blocos_sondas = @processor.read_input(%{})
+    
+  def run(processor \\ Application.get_env(:explorando_marte, :processor)) do
+      blocos_sondas = processor.read_input(%{})
       posicoes_processadas = define_sondas(blocos_sondas, [])
-      @processor.put_output(%{blocos: posicoes_processadas})
+      processor.put_output(%{blocos: posicoes_processadas})
   end
 
   defp define_sondas([bloco = %BlocoSonda{} | rest], posicoes_processadas) do
